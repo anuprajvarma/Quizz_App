@@ -72,6 +72,14 @@ button svg{
     margin-right: 5px;
 }
 
+.correct{
+    background-color: #2f922f;
+}
+
+.Incorrect{
+    background-color: red;
+}
+
 .actions{
     display: flex;
     margin-top: 15px;

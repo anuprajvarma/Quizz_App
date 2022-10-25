@@ -30,6 +30,13 @@ const Quizz = () => {
     return options.sort(() => Math.random() - 0.5);
   };
 
+  const handlePrevOptions = () => {
+    const nextQuestion = currentQuestion - 1;
+    if (currentQuestion > 1) {
+      setCurrentQuestion(nextQuestion);
+    }
+  };
+
   const handleAnswer = (element) => {
     if (element == CurrectAnswer) {
       setScore(score + 5);
@@ -42,7 +49,6 @@ const Quizz = () => {
   const handleNextOptions = () => {
     setClicked(false);
     const nextQuestion = currentQuestion + 1;
-    console.log(nextQuestion);
     if (currentQuestion < 10) {
       setCurrentQuestion(nextQuestion);
     } else {
@@ -72,7 +78,7 @@ const Quizz = () => {
             );
           })}
           <div className="actions">
-            <button>PREV</button>
+            <button onClick={handlePrevOptions}>PREV</button>
             <button disabled={!clicked} onClick={handleNextOptions}>
               NEXT
             </button>
