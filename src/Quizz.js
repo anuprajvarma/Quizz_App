@@ -30,6 +30,12 @@ const Quizz = () => {
     return options.sort(() => Math.random() - 0.5);
   };
 
+  const handleSelect = (i) => {
+    if (clicked === i && clicked === CurrectAnswer) return "correct";
+    else if (clicked === i && clicked !== CurrectAnswer) return "Incorrect";
+    else if (i === CurrectAnswer) return "correct";
+  };
+
   const handlePrevOptions = () => {
     const nextQuestion = currentQuestion - 1;
     if (currentQuestion > 1) {
@@ -66,14 +72,15 @@ const Quizz = () => {
           <div className="question-text">{question}</div>
         </div>
         <div className="answer-section">
-          {options.map((element, i) => {
+          {options.map((i) => {
             return (
               <button
                 key={i}
-                onClick={() => handleAnswer(element)}
+                className={`button ${clicked && handleSelect(i)}`}
+                onClick={() => handleAnswer(i)}
                 disabled={clicked}
               >
-                {element}
+                {i}
               </button>
             );
           })}
