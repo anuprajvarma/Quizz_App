@@ -44,7 +44,7 @@ const Quizz = () => {
   };
 
   const handleAnswer = (element) => {
-    if (element == CurrectAnswer) {
+    if (element === CurrectAnswer) {
       setScore(score + 5);
     } else {
       setScore(score - 1);
