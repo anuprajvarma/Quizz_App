@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Quizz.css";
-import Progressbar from "./components/progressbar";
 
 const Quizz = () => {
   const [question, setquestion] = useState();
@@ -10,7 +9,6 @@ const Quizz = () => {
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState([]);
   const [clicked, setClicked] = useState(false);
-  const [boolvalue, setboolvalue] = useState(false);
 
   useEffect(() => {
     axios.get(`https://opentdb.com/api.php?amount=10`).then(function (res) {
@@ -68,11 +66,7 @@ const Quizz = () => {
           <div className="question-count">
             <span>Question {currentQuestion} of 10</span>
           </div>
-          {question !== "" ? (
-            <div className="question-text">{question}</div>
-          ) : (
-            <Progressbar />
-          )}
+          <div className="question-text">{question}</div>
         </div>
         <div className="answer-section">
           {options.map((i) => {
