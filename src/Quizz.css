@@ -94,3 +94,17 @@ button svg{
     background-color: #234668;
     color:white
 }
+
+/* Responsive */
+
+@media only screen and (max-width:600px) {
+     .app{
+        width: 300px;
+     }
+     .question-count span{
+        font-size: 20px;
+   }
+   .question-text{
+    font-size: 15px;
+}
+}

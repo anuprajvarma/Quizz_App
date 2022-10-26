@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./Quizz.css";
 
 const Quizz = () => {
@@ -10,18 +9,26 @@ const Quizz = () => {
   const [options, setOptions] = useState([]);
   const [clicked, setClicked] = useState(false);
 
-  useEffect(() => {
-    axios.get(`https://opentdb.com/api.php?amount=10`).then(function (res) {
-      setquestion(res.data.results[currentQuestion].question);
-      setCurrentAnswer(res.data.results[currentQuestion].correct_answer);
+  const fetchdata = async (url) => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setquestion(data.results[currentQuestion].question);
+      setCurrentAnswer(data.results[currentQuestion].correct_answer);
       setOptions(
-        res.data.results &&
+        data.results &&
           handleShuffle([
-            res.data.results[currentQuestion]?.correct_answer,
-            ...res.data.results[currentQuestion]?.incorrect_answers,
+            data.results[currentQuestion]?.correct_answer,
+            ...data.results[currentQuestion]?.incorrect_answers,
           ])
       );
-    });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata(`https://opentdb.com/api.php?amount=10`);
   }, [currentQuestion]);
 
   const handleShuffle = (options) => {
