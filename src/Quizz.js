@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Quizz.css";
+import Progressbar from "./components/progressbar";
 
 const Quizz = () => {
   const [question, setquestion] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [CurrectAnswer, setCurrentAnswer] = useState();
-  const [IncurrectAnswer, setIncurrentAnswer] = useState([]);
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState([]);
   const [clicked, setClicked] = useState(false);
+  const [boolvalue, setboolvalue] = useState(false);
 
   useEffect(() => {
     axios.get(`https://opentdb.com/api.php?amount=10`).then(function (res) {
       setquestion(res.data.results[currentQuestion].question);
       setCurrentAnswer(res.data.results[currentQuestion].correct_answer);
-      setIncurrentAnswer(res.data.results[currentQuestion].incorrect_answers);
       setOptions(
         res.data.results &&
           handleShuffle([
@@ -57,7 +57,6 @@ const Quizz = () => {
     const nextQuestion = currentQuestion + 1;
     if (currentQuestion < 10) {
       setCurrentQuestion(nextQuestion);
-    } else {
     }
   };
 
@@ -69,7 +68,11 @@ const Quizz = () => {
           <div className="question-count">
             <span>Question {currentQuestion} of 10</span>
           </div>
-          <div className="question-text">{question}</div>
+          {question !== "" ? (
+            <div className="question-text">{question}</div>
+          ) : (
+            <Progressbar />
+          )}
         </div>
         <div className="answer-section">
           {options.map((i) => {
