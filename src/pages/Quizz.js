@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Actions } from "./components/Actions";
-import { QuestionSection } from "./components/QuestionSection";
-import "./Quizz.css";
+import { AnswerSection } from "../components/AnswerSection";
+import { QuestionSection } from "../components/QuestionSection";
+import "../style/Quizz.css";
 
 const Quizz = () => {
   const [question, setquestion] = useState();
@@ -37,21 +37,6 @@ const Quizz = () => {
     return options.sort(() => Math.random() - 0.5);
   };
 
-  const handleSelect = (i) => {
-    if (clicked === i && clicked === CurrectAnswer) return "correct";
-    else if (clicked === i && clicked !== CurrectAnswer) return "Incorrect";
-    else if (i === CurrectAnswer) return "correct";
-  };
-
-  const handleAnswer = (element) => {
-    if (element === CurrectAnswer) {
-      setScore(score + 5);
-    } else {
-      setScore(score - 1);
-    }
-    setClicked(true);
-  };
-
   return (
     <>
       <div className="app">
@@ -60,26 +45,16 @@ const Quizz = () => {
           currentQuestion={currentQuestion}
           question={question}
         />
-        <div className="answer-section">
-          {options.map((i) => {
-            return (
-              <button
-                key={i}
-                className={`button ${clicked && handleSelect(i)}`}
-                onClick={() => handleAnswer(i)}
-                disabled={clicked}
-              >
-                {i}
-              </button>
-            );
-          })}
-          <Actions
-            setCurrentQuestion={setCurrentQuestion}
-            setClicked={setClicked}
-            currentQuestion={currentQuestion}
-            clicked={clicked}
-          />
-        </div>
+        <AnswerSection
+          options={options}
+          setCurrentQuestion={setCurrentQuestion}
+          setScore={setScore}
+          setClicked={setClicked}
+          currentQuestion={currentQuestion}
+          score={score}
+          CurrectAnswer={CurrectAnswer}
+          clicked={clicked}
+        />
       </div>
     </>
   );
