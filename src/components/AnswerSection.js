@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Actions } from "./Actions";
-import dataContext from "../context.js/dataContex";
+import dataContext from "../contexts/dataContex";
 
 export const AnswerSection = () => {
   const [clicked, setClicked] = useState(false);

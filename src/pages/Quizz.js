@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "../style/Quizz.css";
-import dataContext from "../context.js/dataContex";
+import dataContext from "../contexts/dataContex";
 import { AnswerSection } from "../components/AnswerSection";
 import { QuestionSection } from "../components/QuestionSection";
 
