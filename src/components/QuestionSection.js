@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Score from "./Score";
 import QuestionCount from "./QuestionCount";
 import Questions from "./Questions";
+import dataContext from "../context.js/dataContex";
 
-export const QuestionSection = ({ score, currentQuestion, question }) => {
+export const QuestionSection = () => {
+  const { score, currentQuestion, question } = useContext(dataContext);
   return (
     <div className="question-section">
       <Score score={score} />

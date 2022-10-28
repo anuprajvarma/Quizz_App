@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
+
+import "../style/Quizz.css";
+import dataContext from "../context.js/dataContex";
 import { AnswerSection } from "../components/AnswerSection";
 import { QuestionSection } from "../components/QuestionSection";
-import "../style/Quizz.css";
 
 const Quizz = () => {
   const [question, setquestion] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const [CurrectAnswer, setCurrentAnswer] = useState();
+  const [CurrectAnswer, setCurrectAnswer] = useState();
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState([]);
-  const [clicked, setClicked] = useState(false);
+
+  const value = {
+    question,
+    currentQuestion,
+    CurrectAnswer,
+    score,
+    options,
+    setCurrentQuestion,
+    setScore,
+  };
 
   const fetchdata = async (url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
       setquestion(data.results[currentQuestion].question);
-      setCurrentAnswer(data.results[currentQuestion].correct_answer);
+      setCurrectAnswer(data.results[currentQuestion].correct_answer);
       setOptions(
         data.results &&
           handleShuffle([
@@ -38,25 +49,12 @@ const Quizz = () => {
   };
 
   return (
-    <>
+    <dataContext.Provider value={value}>
       <div className="app">
-        <QuestionSection
-          score={score}
-          currentQuestion={currentQuestion}
-          question={question}
-        />
-        <AnswerSection
-          options={options}
-          setCurrentQuestion={setCurrentQuestion}
-          setScore={setScore}
-          setClicked={setClicked}
-          currentQuestion={currentQuestion}
-          score={score}
-          CurrectAnswer={CurrectAnswer}
-          clicked={clicked}
-        />
+        <QuestionSection />
+        <AnswerSection />
       </div>
-    </>
+    </dataContext.Provider>
   );
 };
 

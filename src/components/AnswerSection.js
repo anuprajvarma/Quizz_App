@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Actions } from "./Actions";
+import dataContext from "../context.js/dataContex";
 
-export const AnswerSection = ({
-  options,
-  currentQuestion,
-  clicked,
-  CurrectAnswer,
-  score,
-  setCurrentQuestion,
-  setClicked,
-  setScore,
-}) => {
+export const AnswerSection = () => {
+  const [clicked, setClicked] = useState(false);
+  const {
+    options,
+    currentQuestion,
+    CurrectAnswer,
+    score,
+    setCurrentQuestion,
+    setScore,
+  } = useContext(dataContext);
+
   const handleSelect = (i) => {
     if (clicked === i && clicked === CurrectAnswer) return "correct";
     else if (clicked === i && clicked !== CurrectAnswer) return "Incorrect";
