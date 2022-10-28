@@ -1,5 +1,5 @@
 body{
-    background-color: #7cc6fe;
+    background-color: #1d1d28;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@ body{
 }
 
 .app{
-    background-color: #252d4a;
+    background-color: #282837;
     width: 500px;
     min-height: 250px;
     height: min-content;
@@ -50,7 +50,7 @@ button{
  width: 100%;
  font-size: 16px;
  color: #ffffff;
- background-color: #252d4a;
+ background-color: #282837;
  border-radius: 15px;
  display: flex;
  padding: 5px;
@@ -86,7 +86,7 @@ button svg{
 }
 
 .actions button{
-    background-color: #7cc6fe;
+    background-color: #3E6D9C;
     justify-content: center;
 }
 

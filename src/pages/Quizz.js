@@ -26,6 +26,7 @@ const Quizz = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
+      console.log(data.results);
       setquestion(data.results[currentQuestion].question);
       setCurrectAnswer(data.results[currentQuestion].correct_answer);
       setOptions(
@@ -43,6 +44,10 @@ const Quizz = () => {
   useEffect(() => {
     fetchdata(`https://opentdb.com/api.php?amount=10`);
   }, [currentQuestion]);
+
+  // useEffect(() => {
+
+  // }, [currentQuestion]);
 
   const handleShuffle = (options) => {
     return options.sort(() => Math.random() - 0.5);
