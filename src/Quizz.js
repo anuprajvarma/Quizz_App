@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import QuestionCount from "./components/QuestionCount";
-import Questions from "./components/Questions";
 import { Actions } from "./components/Actions";
-import Score from "./components/Score";
+import { QuestionSection } from "./components/QuestionSection";
 import "./Quizz.css";
 
 const Quizz = () => {
@@ -45,13 +43,6 @@ const Quizz = () => {
     else if (i === CurrectAnswer) return "correct";
   };
 
-  const handlePrevOptions = () => {
-    const nextQuestion = currentQuestion - 1;
-    if (currentQuestion > 1) {
-      setCurrentQuestion(nextQuestion);
-    }
-  };
-
   const handleAnswer = (element) => {
     if (element === CurrectAnswer) {
       setScore(score + 5);
@@ -61,22 +52,14 @@ const Quizz = () => {
     setClicked(true);
   };
 
-  const handleNextOptions = () => {
-    setClicked(false);
-    const nextQuestion = currentQuestion + 1;
-    if (currentQuestion < 10) {
-      setCurrentQuestion(nextQuestion);
-    }
-  };
-
   return (
     <>
       <div className="app">
-        <div className="question-section">
-          <Score score={score} />
-          <QuestionCount currentQuestion={currentQuestion} />
-          <Questions question={question} />
-        </div>
+        <QuestionSection
+          score={score}
+          currentQuestion={currentQuestion}
+          question={question}
+        />
         <div className="answer-section">
           {options.map((i) => {
             return (
@@ -91,8 +74,9 @@ const Quizz = () => {
             );
           })}
           <Actions
-            handlePrevOptions={handlePrevOptions}
-            handleNextOptions={handleNextOptions}
+            setCurrentQuestion={setCurrentQuestion}
+            setClicked={setClicked}
+            currentQuestion={currentQuestion}
             clicked={clicked}
           />
         </div>
