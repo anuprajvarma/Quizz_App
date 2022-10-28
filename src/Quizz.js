@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import QuestionCount from "./components/QuestionCount";
+import Questions from "./components/Questions";
+import { Actions } from "./components/Actions";
+import Score from "./components/Score";
 import "./Quizz.css";
 
 const Quizz = () => {
@@ -69,11 +73,9 @@ const Quizz = () => {
     <>
       <div className="app">
         <div className="question-section">
-          <h5>Score {score}</h5>
-          <div className="question-count">
-            <span>Question {currentQuestion} of 10</span>
-          </div>
-          <div className="question-text">{question}</div>
+          <Score score={score} />
+          <QuestionCount currentQuestion={currentQuestion} />
+          <Questions question={question} />
         </div>
         <div className="answer-section">
           {options.map((i) => {
@@ -88,12 +90,11 @@ const Quizz = () => {
               </button>
             );
           })}
-          <div className="actions">
-            <button onClick={handlePrevOptions}>PREV</button>
-            <button disabled={!clicked} onClick={handleNextOptions}>
-              NEXT
-            </button>
-          </div>
+          <Actions
+            handlePrevOptions={handlePrevOptions}
+            handleNextOptions={handleNextOptions}
+            clicked={clicked}
+          />
         </div>
       </div>
     </>
