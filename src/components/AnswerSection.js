@@ -1,4 +1,7 @@
 import React, { useContext, useState } from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
 import { Actions } from "./Actions";
 import dataContext from "../contexts/dataContex";
 
@@ -30,18 +33,26 @@ export const AnswerSection = () => {
 
   return (
     <div className="answer-section">
-      {options.map((i) => {
-        return (
-          <button
-            key={i}
-            className={`button ${clicked && handleSelect(i)}`}
-            onClick={() => handleAnswer(i)}
-            disabled={clicked}
-          >
-            {i}
-          </button>
-        );
-      })}
+      {CurrectAnswer ? (
+        <div className="option-section">
+          {options.map((i) => {
+            return (
+              <button
+                key={i}
+                className={`button ${clicked && handleSelect(i)}`}
+                onClick={() => handleAnswer(i)}
+                disabled={clicked}
+              >
+                {i}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
+        <div style={{ width: 60, height: 60, marginLeft: 50 }}>
+          <CircularProgressbar />
+        </div>
+      )}
       <Actions
         setCurrentQuestion={setCurrentQuestion}
         setClicked={setClicked}

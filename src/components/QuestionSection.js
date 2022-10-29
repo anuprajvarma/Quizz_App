@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
 import Score from "./Score";
 import QuestionCount from "./QuestionCount";
 import Questions from "./Questions";
@@ -10,7 +13,13 @@ export const QuestionSection = () => {
     <div className="question-section">
       <Score score={score} />
       <QuestionCount currentQuestion={currentQuestion} />
-      <Questions question={question} />
+      {question ? (
+        <Questions question={question} />
+      ) : (
+        <div style={{ width: 60, height: 60, marginLeft: 50 }}>
+          <CircularProgressbar />
+        </div>
+      )}
     </div>
   );
 };

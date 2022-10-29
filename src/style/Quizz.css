@@ -41,6 +41,9 @@ body{
 
 .answer-section{
     width: 100%;
+}
+
+.option-section{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,6 +52,7 @@ body{
 button{
  width: 100%;
  font-size: 16px;
+ margin-top: 10px;
  color: #ffffff;
  background-color: #282837;
  border-radius: 15px;
