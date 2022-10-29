@@ -7,6 +7,7 @@ import { QuestionSection } from "../components/QuestionSection";
 
 const Quizz = () => {
   const [question, setquestion] = useState();
+  const [clicked, setClicked] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [CurrectAnswer, setCurrectAnswer] = useState();
   const [score, setScore] = useState(0);
@@ -14,10 +15,12 @@ const Quizz = () => {
 
   const value = {
     question,
+    clicked,
     currentQuestion,
     CurrectAnswer,
     score,
     options,
+    setClicked,
     setCurrentQuestion,
     setScore,
   };

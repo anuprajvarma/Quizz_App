@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import dataContext from "../contexts/dataContex";
 
-export const Actions = ({
-  setCurrentQuestion,
-  currentQuestion,
-  setClicked,
-  clicked,
-}) => {
+export const Actions = () => {
+  const {
+    setCurrentQuestion,
+    setScore,
+    score,
+    currentQuestion,
+    setClicked,
+    clicked,
+  } = useContext(dataContext);
+
   const handlePrevOptions = () => {
-    const nextQuestion = currentQuestion - 1;
-    if (currentQuestion > 1) {
-      setCurrentQuestion(nextQuestion);
-    }
+    setCurrentQuestion(1);
+    setClicked(false);
+    setScore(0);
   };
 
   const handleNextOptions = () => {
@@ -23,7 +27,7 @@ export const Actions = ({
 
   return (
     <div className="actions">
-      <button onClick={handlePrevOptions}>PREV</button>
+      <button onClick={handlePrevOptions}>Restart</button>
       <button disabled={!clicked} onClick={handleNextOptions}>
         NEXT
       </button>

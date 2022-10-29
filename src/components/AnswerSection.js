@@ -6,15 +6,8 @@ import { Actions } from "./Actions";
 import dataContext from "../contexts/dataContex";
 
 export const AnswerSection = () => {
-  const [clicked, setClicked] = useState(false);
-  const {
-    options,
-    currentQuestion,
-    CurrectAnswer,
-    score,
-    setCurrentQuestion,
-    setScore,
-  } = useContext(dataContext);
+  const { options, CurrectAnswer, score, setScore, clicked, setClicked } =
+    useContext(dataContext);
 
   const handleSelect = (i) => {
     if (clicked === i && clicked === CurrectAnswer) return "correct";
@@ -53,12 +46,7 @@ export const AnswerSection = () => {
           <CircularProgressbar />
         </div>
       )}
-      <Actions
-        setCurrentQuestion={setCurrentQuestion}
-        setClicked={setClicked}
-        currentQuestion={currentQuestion}
-        clicked={clicked}
-      />
+      <Actions />
     </div>
   );
 };
